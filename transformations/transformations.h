@@ -91,13 +91,31 @@ constexpr auto concat(List<a, b>) {
     return append(a, b);
 }
 
-template<auto... Xs, auto... Ys>
+template<auto... Xs>
 constexpr auto concatMap(auto P,List<Xs...> l)
-requires (std::is_invocable_v<decltype(P), decltype(Xs)> &&...) && (std::is_invocable_r_v<bool, decltype(P), decltype(Ys)> &&...)
+requires (std::is_invocable_v<decltype(P), decltype(Xs)> &&...)
 {
     return append(P(head(l)), concatMap(P, tail(l)));
 }
 
-constexpr auto concatTestFunc(auto X) {
-    return List<X, X*2>();
+template<auto T, auto... Xs>
+constexpr auto scanl (auto P, List<Xs...> l)
+requires (sizeof... (Xs) > 0)
+{
+    return postpend<foldl<T>(P, l)>(scanl<T>(P, init(l)));
+}
+template<auto T, auto... Xs>
+constexpr auto scanl (auto, List<> l) {
+    return List<T>();
+}
+
+template<auto T, auto... Xs>
+constexpr auto scanr (auto P, List<Xs...> l)
+requires (sizeof... (Xs) > 0)
+{
+    return prepend<foldr<T>(P,l)>(scanr<T>(P, tail(l)));
+}
+template<auto T, auto... Xs>
+constexpr auto scanr (auto, List<> l) {
+    return List<T>();
 }

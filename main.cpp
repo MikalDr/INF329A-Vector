@@ -19,21 +19,10 @@
 //TODO: scanr
 //TODO: scanr1
 
-//TODO: zip3
-
-//TODO: zipWith
-
-//TODO: zipWith3
-
-//TODO: unzip
-
-//TODO: unzip3
-
 int main() {
-    using namespace std;
     //cout << fact<10>::value;
-    constexpr auto l0 = List<1,2,9,4,5,6,7,8>();
-    constexpr auto l1 = prepend<0>(List<1,2,3,4>());
+    constexpr auto l0 = List<1,2,3>();
+    constexpr auto l1 = List<4,5,6>();
     constexpr auto l2 = l1.postpend2<5>();
     constexpr auto l3 = postpend<5>(List<1,2,3,4>());
     constexpr auto l4 = l3.prepend2<5>();
@@ -53,14 +42,18 @@ int main() {
     constexpr auto allTest = all([](int x){return x >=2;}, l0);
     //constexpr auto concatMapAuto = concatMap([](int x){return List<int>(x,x*2);}
     constexpr auto concatTest = concat(List<l0,l1>());
-
-    constexpr auto foldlTest = foldl([](int x, int y){return x / y;}, 64, List<4,2,4>());
+    constexpr auto foldlTest = foldl<64>([](int x, int y){return x / y;}, List<4,2,4>());
+    constexpr auto scanlTest = scanl<64>([](int x, int y){return x / y;}, List<4,2,4>());
+    constexpr auto scanrTest = scanr<2>([](int x, int y){return x / y;}, List<8,12,24,4>());
     constexpr auto foldl1Test = foldl1(([](int x, int y){return x + y;}), List<1,8,2,4>());
-    constexpr auto foldrTest = foldr([](int x, int y){return x / y;}, 2, List<8,12,24,4>());
+    constexpr auto foldrTest = foldr<2>([](int x, int y){return x / y;}, List<8,12,24,4>());
     constexpr auto foldr1Test = foldr1([](int x, int y){return x / y;}, List<8,12,24,4, 2>());
     constexpr auto sumTest = sum(l0);
     constexpr auto productTest = product(l0);
-    std::cout << concatTest.to_string();
+    constexpr auto zipTest = zip(l0, l1);
+    constexpr auto unzipTest = unzip(zipTest);
+    constexpr auto zipwithTest = zipwith<([](int x, int y){return x + y;})>(l0,l1);
+    std::cout << scanrTest.to_string();
     constexpr auto testTakeEmpty = take<0>(List<>());
     constexpr auto testDropEmpty = drop<3>(List<>());
     constexpr auto testTrueNull = null(List<>());

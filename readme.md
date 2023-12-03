@@ -1,53 +1,62 @@
 ## Haskell List Functions for Numbers Checklist
 
 ### Basic Operations
-- [ ] `(++)` - List concatenation.
-- [ ] `length` - Returns the length of a list.
-- [ ] `null` - Checks if a list is empty.
-- [ ] `reverse` - Reverses a list.
-- [ ] `append`
-- [ ] `postpend`
-- [ ] `prepend`
+- [x] `(++)/get` - List concatenation.
+- [x] `length` - Returns the length of a list.
+- [x] `null` - Checks if a list is empty.
+- [x] `reverse` - Reverses a list.
+- [x] `append`
+- [x] `postpend`
+- [x] `prepend`
 
 ### Transformations
-- [ ] `map` - Applies a function to every element of a list.
-- [ ] `filter` - Filters a list based on a predicate.
-- [ ] `take` - Takes the first n elements of a list.
-- [ ] `drop` - Drops the first n elements from a list.
-- [ ] `takeWhile` - Takes elements from the list as long as the predicate holds.
-- [ ] `dropWhile` - Drops elements from the list as long as the predicate holds.
-- [ ] `scanl` - Similar to foldl, but returns a list of successive reduced values.
-- [ ] `scanr` - Similar to foldr, but returns a list of successive reduced values.
-- [ ] `concat`
-- [ ] `concatMap`
+- [x] `map` - Applies a function to every element of a list.
+- [x] `filter` - Filters a list based on a predicate.
+- [x] `take` - Takes the first n elements of a list.
+- [x] `drop` - Drops the first n elements from a list.
+- [x] `takeWhile` - Takes elements from the list as long as the predicate holds.
+- [x] `dropWhile` - Drops elements from the list as long as the predicate holds.
+- [x] `scanl` - Similar to foldl, but returns a list of successive reduced values.
+- [x] `scanr` - Similar to foldr, but returns a list of successive reduced values.
+- [ ] `scanl1`
+- [ ] `scanr1`
+- [x] `concat`
+- [x] `concatMap`
 
 ### Folding and Reduction
-- [ ] `foldl` - Left-associative fold of a list.
-- [ ] `foldr` - Right-associative fold of a list.
-- [ ] `sum` - Calculates the sum of a list.
-- [ ] `product` - Calculates the product of a list.
+- [x] `foldl` - Left-associative fold of a list.
+- [x] `foldr` - Right-associative fold of a list.
+- [x] `sum` - Calculates the sum of a list.
+- [x] `product` - Calculates the product of a list.
+- [ ] `and`
+- [ ] `or`
 
 ### Searching
-- [ ] `elem` - Checks if an element is in a list.
-- [ ] `maximum` - Returns the maximum value from a list.
-- [ ] `minimum` - Returns the minimum value from a list.
+- [x] `elem` - Checks if an element is in a list.
+- [ ] `notElem`
+- [ ] `lookup`
+- [x] `maximum` - Returns the maximum value from a list.
+- [x] `minimum` - Returns the minimum value from a list.
 
 ### Sublists and Elements
-- [ ] `subsequences` - Returns all subsequences of the list.
-- [ ] `permutations` - Returns all permutations of the list.
-- [ ] `head` - Extracts the first element of a list.
-- [ ] `last` - Extracts the last element of a list.
-- [ ] `tail` - Extracts all elements after the head of a list.
-- [ ] `init` - Extracts all elements except the last from a list.
-- [ ] `splitAt`
-- [ ] `span`
+- [x] `head` - Extracts the first element of a list.
+- [x] `last` - Extracts the last element of a list.
+- [x] `tail` - Extracts all elements after the head of a list.
+- [x] `init` - Extracts all elements except the last from a list.
+- [x] `splitAt`
+- [x] `span`
+- [ ] `break`
 
 ### Zipping and Unzipping
-- [ ] `zip` - Takes two lists and returns a list of corresponding pairs.
-- [ ] `zipWith` - Generalized version of zip, with a function to combine elements.
+- [x] `zip` - Takes two lists and returns a list of corresponding pairs.
+- [ ] `zip3`
+- [x] `zipWith` - Generalized version of zip, with a function to combine elements.
+- [ ] `zipWith3`
+- [x] `unzip`
+- [ ] `unzip3`
 
 ### Specialized Lists
-- [ ] `replicate` - Creates a list where an element is repeated n times.
+- [x] `replicate` - Creates a list where an element is repeated n times.
 - [ ] `cycle` - Repeats a list infinitely.
 - [ ] `iterate` - Generates an infinite list by repeatedly applying a function.
 
