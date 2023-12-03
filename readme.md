@@ -48,11 +48,12 @@
 - [x] `break`
 
 ### Zipping and Unzipping
+The zipping functions are not for numerals
 - [x] `zip` - Takes two lists and returns a list of corresponding pairs.
-- [ ] `zip3`
 - [x] `zipWith` - Generalized version of zip, with a function to combine elements.
-- [ ] `zipWith3`
 - [x] `unzip`
+- [ ] `zip3`
+- [ ] `zipWith3`
 - [ ] `unzip3`
 
 ### Specialized Lists
