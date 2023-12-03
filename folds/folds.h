@@ -48,3 +48,8 @@ template<auto... Xs>
 constexpr auto foldr1 (auto P, List<Xs...> l) {
     return foldr<last(l)>(P, init(l));
 }
+template<auto... Xs>
+constexpr auto list_and(List<Xs...> l) { return foldl<true>([](bool a, bool b){return a && b;},l);}
+
+template<auto... Xs>
+constexpr auto list_or(List<Xs...> l) { return foldl<true>([](bool a, bool b){return a || b;},l);}

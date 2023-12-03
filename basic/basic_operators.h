@@ -14,7 +14,7 @@ constexpr auto get(List<Xs...> l) {
     if constexpr (N == 0) {
         return head(l);
     } else
-        return get<N - 1>(List<Xs...>());
+        return get<N - 1>(tail(l));
 }
 
 template<auto... Xs>

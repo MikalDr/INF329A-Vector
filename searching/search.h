@@ -18,6 +18,10 @@ constexpr auto elem (auto T, List<Xs...> l) {
 constexpr auto elem (auto, List<>) {
     return false;
 }
+template<auto... Xs>
+constexpr auto notElem(auto T, List<Xs...> l) {
+    return !elem(T, l);
+}
 
 template<auto X, auto... Xs>
 constexpr auto max (List<X, Xs...>) {
@@ -46,6 +50,19 @@ constexpr auto min (List<X,Xs...>) {
     else {
         return m;
     }
+}
+template<auto T, std::pair... Xs>
+requires(sizeof... (Xs) > 0)
+constexpr auto lookup (List<Xs...> l) {
+    if constexpr(head(l).first == T) {
+            return head(l).second;
+    } else {
+        return lookup<T>(tail(l));
+    }
+}
+template<auto T>
+constexpr auto lookup (List<>) {
+    return;
 }
 
 template<auto... Xs>

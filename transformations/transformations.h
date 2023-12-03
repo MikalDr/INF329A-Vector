@@ -66,7 +66,7 @@ constexpr auto drop(List<>) {return List<>();}
 
 template<auto... Xs>
 constexpr auto takeWhile(auto P, List<Xs...> l)
-requires (std::is_invocable_r_v<bool, decltype(P), decltype(Xs)> &&...) && (sizeof... (Xs) > 0)
+requires (std::is_invocable_r<bool, decltype(P), decltype(Xs)>::value && ...) && (sizeof... (Xs) > 0)
 {
 if constexpr(P (head(l))){ return prepend<head(l)>(takeWhile(P, tail(l))); }
 else { return List<>(); }
@@ -76,15 +76,13 @@ constexpr auto takeWhile(auto P, List<> l) { return l;}
 
 template<auto... Xs>
 constexpr auto dropWhile(auto P, List<Xs...> l)
-requires (std::is_invocable_r_v<bool, decltype(P), decltype(Xs)> &&...)
+requires (std::is_invocable_r<bool, decltype(P), decltype(Xs)>::value && ...) && (sizeof... (Xs) > 0)
 {
-if constexpr(P (head(l))){ return dropWhile(tail(l), P); }
-else { return l;}
+if constexpr(P (head(l))){ return (dropWhile(P, tail(l))); }
+else { return l; }
 }
 
-constexpr auto dropWhile(auto, List<> l) {
-    return std::make_pair(List < > (), List < > ());
-}
+constexpr auto dropWhile(auto P, List<> l) { return l;}
 
 template<List a, List b>
 constexpr auto concat(List<a, b>) {
@@ -118,4 +116,25 @@ requires (sizeof... (Xs) > 0)
 template<auto T, auto... Xs>
 constexpr auto scanr (auto, List<> l) {
     return List<T>();
+}
+template<auto... Xs>
+requires(sizeof... (Xs) > 0)
+constexpr auto scanl1 (auto P, List<Xs...> l)
+{
+    if constexpr(length(l) == 1) {
+        return scanl<head(l)>(P, List<>());
+    } else {
+        return scanl<head(l)>(P, tail(l));
+    }
+}
+
+template<auto... Xs>
+requires(sizeof... (Xs) > 0)
+constexpr auto scanr1 (auto P, List<Xs...> l)
+{
+    if constexpr(length(l) == 1) {
+        return scanr<last(l)>(P, List<>());
+    } else {
+        return scanr<last(l)>(P, init(l));
+    }
 }

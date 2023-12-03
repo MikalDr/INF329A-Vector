@@ -18,8 +18,8 @@
 - [x] `dropWhile` - Drops elements from the list as long as the predicate holds.
 - [x] `scanl` - Similar to foldl, but returns a list of successive reduced values.
 - [x] `scanr` - Similar to foldr, but returns a list of successive reduced values.
-- [ ] `scanl1`
-- [ ] `scanr1`
+- [x] `scanl1`
+- [x] `scanr1`
 - [x] `concat`
 - [x] `concatMap`
 
@@ -28,13 +28,13 @@
 - [x] `foldr` - Right-associative fold of a list.
 - [x] `sum` - Calculates the sum of a list.
 - [x] `product` - Calculates the product of a list.
-- [ ] `and`
-- [ ] `or`
+- [x] `and`
+- [x] `or`
 
 ### Searching
 - [x] `elem` - Checks if an element is in a list.
-- [ ] `notElem`
-- [ ] `lookup`
+- [x] `notElem`
+- [x] `lookup`
 - [x] `maximum` - Returns the maximum value from a list.
 - [x] `minimum` - Returns the minimum value from a list.
 
@@ -45,7 +45,7 @@
 - [x] `init` - Extracts all elements except the last from a list.
 - [x] `splitAt`
 - [x] `span`
-- [ ] `break`
+- [x] `break`
 
 ### Zipping and Unzipping
 - [x] `zip` - Takes two lists and returns a list of corresponding pairs.

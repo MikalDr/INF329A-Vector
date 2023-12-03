@@ -36,3 +36,9 @@ template<auto... Xs>
 constexpr auto span(auto P, List<Xs...> l)
 requires (std::is_invocable_r_v<bool, decltype(P), decltype(Xs)> &&...)
 { return std::make_tuple(takeWhile(P, l), dropWhile(P, l)); }
+
+template<auto... Xs>
+constexpr auto list_break(auto P, List<Xs...> l) {
+    constexpr auto negative_lambda = [P](int x){ return !P(x);};
+    return List<takeWhile(negative_lambda, l), dropWhile(negative_lambda,l)>();
+}
