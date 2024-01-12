@@ -23,7 +23,7 @@ int main() {
     //cout << fact<10>::value;
     constexpr auto l0 = List<1,2,3>();
     constexpr auto l1 = List<4,5,6>();
-    constexpr auto l2 = l1.postpend2<5>();
+    constexpr auto l2 = List<7,8,9>();
     constexpr auto l3 = postpend<5>(List<1,2,3,4>());
     constexpr auto l4 = l3.prepend2<5>();
     constexpr auto e = head(l3);
@@ -41,7 +41,7 @@ int main() {
     constexpr auto anyTest = any([](int x){return x >=3;}, l0);
     constexpr auto allTest = all([](int x){return x >=2;}, l0);
     //constexpr auto concatMapAuto = concatMap([](int x){return List<int>(x,x*2);}
-    constexpr auto concatTest = concat(List<l0,l1>());
+    constexpr auto concatTest = concat(List<l0,l1, l2>());
     constexpr auto foldlTest = foldl<64>([](int x, int y){return x / y;}, List<4,2,4>());
     constexpr auto scanlTest = scanl<64>([](int x, int y){return x / y;}, List<4,2,4>());
     constexpr auto scanl1Test = scanl1([](int x, int y){return x / y;}, List<64,4,2,8>());
@@ -53,18 +53,18 @@ int main() {
     constexpr auto sumTest = sum(l0);
     constexpr auto lookupTest = lookup<'c'>(List<std::pair('a', 0), std::pair('b', 1), std::pair('c',2)>());
     constexpr auto productTest = product(l0);
+    //constexpr auto productTest2 = product(List<>());
     constexpr auto zipTest = zip(l0, l1);
     constexpr auto unzipTest = unzip(zipTest);
     constexpr auto zipwithTest = zipwith<([](int x, int y){return x + y;})>(l0,l1);
     constexpr auto breakTest = list_break(([](int x){return x == 3;}), List<1,2,3,4,5>());
-    std::cout << get<1>(breakTest).to_string();
     constexpr auto testTakeEmpty = take<0>(List<>());
     constexpr auto testDropEmpty = drop<3>(List<>());
     constexpr auto testTrueNull = null(List<>());
     constexpr auto testFalseNull = null(List<1,2,3>());
     constexpr auto headTest = head(List<1,2,3>());
     constexpr auto maxTest = max(l0);
-    //std::cout << maxTest;
+    std::cout << get<1>(concatTest);
     //constexpr auto initTest = init(List<1,2>());
 
     /*

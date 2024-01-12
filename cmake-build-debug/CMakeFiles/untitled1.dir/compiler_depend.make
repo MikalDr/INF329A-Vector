@@ -153,7 +153,8 @@ CMakeFiles/untitled1.dir/basic/basic_operators.cpp.obj: C:/Users/Mikal/Desktop/d
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/ostream.tcc \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/istream \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/istream.tcc \
-  C:/Users/Mikal/Desktop/dat329A\ 2/INF329A-Vector/list.h
+  C:/Users/Mikal/Desktop/dat329A\ 2/INF329A-Vector/list.h \
+  C:/Users/Mikal/Desktop/dat329A\ 2/INF329A-Vector/unityped.h
 
 CMakeFiles/untitled1.dir/main.cpp.obj: C:/Users/Mikal/Desktop/dat329A\ 2/INF329A-Vector/main.cpp \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/string \
@@ -308,9 +309,10 @@ CMakeFiles/untitled1.dir/main.cpp.obj: C:/Users/Mikal/Desktop/dat329A\ 2/INF329A
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/istream \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/istream.tcc \
   C:/Users/Mikal/Desktop/dat329A\ 2/INF329A-Vector/list.h \
+  C:/Users/Mikal/Desktop/dat329A\ 2/INF329A-Vector/unityped.h \
   C:/Users/Mikal/Desktop/dat329A\ 2/INF329A-Vector/transformations/transformations.h \
-  C:/Users/Mikal/Desktop/dat329A\ 2/INF329A-Vector/folds/folds.h \
   C:/Users/Mikal/Desktop/dat329A\ 2/INF329A-Vector/sublist/sublist.h \
+  C:/Users/Mikal/Desktop/dat329A\ 2/INF329A-Vector/folds/folds.h \
   C:/Users/Mikal/Desktop/dat329A\ 2/INF329A-Vector/searching/search.h \
   C:/Users/Mikal/Desktop/dat329A\ 2/INF329A-Vector/zipping/zip.h \
   C:/Users/Mikal/Desktop/dat329A\ 2/INF329A-Vector/special/special.h
@@ -624,11 +626,13 @@ C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32
 
 C:/Users/Mikal/Desktop/dat329A\ 2/INF329A-Vector/list.h:
 
+C:/Users/Mikal/Desktop/dat329A\ 2/INF329A-Vector/unityped.h:
+
 C:/Users/Mikal/Desktop/dat329A\ 2/INF329A-Vector/transformations/transformations.h:
 
-C:/Users/Mikal/Desktop/dat329A\ 2/INF329A-Vector/folds/folds.h:
-
 C:/Users/Mikal/Desktop/dat329A\ 2/INF329A-Vector/sublist/sublist.h:
+
+C:/Users/Mikal/Desktop/dat329A\ 2/INF329A-Vector/folds/folds.h:
 
 C:/Users/Mikal/Desktop/dat329A\ 2/INF329A-Vector/searching/search.h:
 

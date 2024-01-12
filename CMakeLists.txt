@@ -12,4 +12,5 @@ add_executable(untitled1 main.cpp
         searching/search.h
         sublist/sublist.h
         zipping/zip.h
-        special/special.h)
+        special/special.h
+        unityped.h)

@@ -4,9 +4,10 @@
 
 
 #pragma once
+#include "../unityped.h"
 
 template <auto... Xs, auto... Ys>
-requires (sizeof... (Xs) > 0) && (sizeof... (Ys) > 0)
+requires (sizeof... (Xs) > 0) && (sizeof... (Ys) > 0) && (is_unityped(Ys..., Xs...))
 constexpr auto zip (List<Xs...> a, List<Ys...> b) {
     return prepend<std::pair(head(a), head(b))>(zip(tail(a), tail(b)));
 }
@@ -17,6 +18,7 @@ return List<>();
 }
 
 template <auto P, auto... Xs, auto... Ys>
+requires (is_unityped(Ys..., Xs...))
 constexpr auto zipwith (List<Xs...> a, List<Ys...> b) {
     if constexpr (length(a) > 1 && length(b) > 1) {
         return prepend<P(head(a), head(b))>(zipwith<P>(tail(a), tail(b)));
@@ -28,7 +30,7 @@ constexpr auto zipwith (List<Xs...> a, List<Ys...> b) {
 
 template <std::pair... Xs>
 constexpr auto unzip (List<Xs...> l)
-requires (sizeof... (Xs) > 0)
+requires (sizeof... (Xs) > 0) && (is_unityped(Xs...))
 {
     if constexpr(length(l) > 1) {
         auto rest = unzip(tail(l));

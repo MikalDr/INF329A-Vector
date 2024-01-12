@@ -5,7 +5,7 @@
 #pragma once
 
 template<std::size_t N, auto... Xs>
-requires(N >= 0)
+requires(N >= 0) && (is_unityped(Xs...))
 constexpr auto replicate (List<Xs...> l) {
     if constexpr(N == 0) {
         return List<>();

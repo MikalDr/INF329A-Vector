@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include "../list.h"
+#include "../unityped.h"
 
 #pragma once
 
@@ -34,10 +35,13 @@ constexpr auto reverse(List<> l) {
 }
 
 template<auto X, auto... Xs>
+requires (is_unityped(X, Xs...))
 constexpr auto postpend(List<Xs...> l) { return List<Xs..., X>(); }
 
 template<auto X, auto... Xs>
+requires (is_unityped(X, Xs...))
 constexpr auto prepend(List<Xs...> l) { return List<X, Xs...>(); }
 
 template<auto... Xs, auto... Ys>
+requires (is_unityped(Ys..., Xs...))
 constexpr auto append(List<Xs...>, List<Ys...>) { return List<Xs..., Ys...>(); }

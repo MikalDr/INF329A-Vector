@@ -3,10 +3,12 @@
 //
 
 #include "../list.h"
+#include "../unityped.h"
 
 #pragma once
 
 template<auto... Xs>
+requires (is_unityped(Xs...))
 constexpr auto elem (auto T, List<Xs...> l) {
     if constexpr (T == head(l)) {
         return true;
@@ -19,11 +21,13 @@ constexpr auto elem (auto, List<>) {
     return false;
 }
 template<auto... Xs>
+requires (is_unityped(Xs...))
 constexpr auto notElem(auto T, List<Xs...> l) {
     return !elem(T, l);
 }
 
 template<auto X, auto... Xs>
+requires (is_unityped(X, Xs...))
 constexpr auto max (List<X, Xs...>) {
     constexpr auto m =  max(List<Xs...>());
     if constexpr(X > m) {
@@ -42,6 +46,7 @@ constexpr auto max (List<> l) {
 }
 
 template<auto X, auto... Xs>
+requires (is_unityped(X,Xs...))
 constexpr auto min (List<X,Xs...>) {
     constexpr auto m = min(List<Xs...>());
     if constexpr(X < m) {
@@ -67,7 +72,7 @@ constexpr auto lookup (List<>) {
 
 template<auto... Xs>
 constexpr auto any(auto P, List<Xs...> l)
-requires(sizeof... (Xs) > 0) && (std::is_invocable_r_v<bool, decltype(P), decltype(Xs)> &&...)
+requires(sizeof... (Xs) > 0) && (std::is_invocable_r_v<bool, decltype(P), decltype(Xs)> &&...) && (is_unityped(Xs...))
 {
 if constexpr (P(head(l))) {
 return true;
@@ -81,7 +86,7 @@ constexpr auto any(auto, List<>){
 }
 
 template<auto... Xs>
-requires(sizeof... (Xs) > 0)
+requires(sizeof... (Xs) > 0) && (is_unityped(Xs...))
 constexpr auto all(auto P, List<Xs...> l) {
     if constexpr (P(head(l))) {
         return all(P, tail(l));

@@ -151,4 +151,5 @@ CMakeFiles/untitled1.dir/basic/basic_operators.cpp.obj: \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/ostream.tcc \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/istream \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/istream.tcc \
- C:/Users/Mikal/Desktop/dat329A\ 2/INF329A-Vector/list.h
+ C:/Users/Mikal/Desktop/dat329A\ 2/INF329A-Vector/list.h \
+ C:/Users/Mikal/Desktop/dat329A\ 2/INF329A-Vector/unityped.h

@@ -3,21 +3,25 @@
 //
 
 #include "../list.h"
+#include "../unityped.h"
+#include "../sublist/sublist.h"
 
 #pragma once
 
 template<auto... Xs>
 constexpr auto map(auto f, List<Xs...> l)
-requires(std::is_invocable_v<decltype(f), decltype(Xs)> && ...) && (sizeof... (Xs) > 0)
+requires(std::is_invocable_v<decltype(f), decltype(Xs)> && ...) &&
+        (sizeof... (Xs) > 0) && (is_unityped(Xs...))
 {
-if constexpr (sizeof... (Xs) == 0) {
-return l;
+    if constexpr (sizeof... (Xs) == 0) {
+        return l;
+    }
+    else {
+        return prepend<f(head(l))>(map(f, tail(l)));
+    }
 }
-else {
-return prepend<f(head(l))>(map(f, tail(l)));
-}
-}
-constexpr auto map(auto, List<> l){
+constexpr auto map(auto, List<> l)
+{
     return l;
 }
 
@@ -29,7 +33,7 @@ constexpr auto filter(List<> l, auto f) {
 
 template<auto... Xs>
 constexpr auto filter(List<Xs...> l, auto f)
-requires(sizeof... (Xs) > 0) && (std::is_invocable_r_v<bool, decltype(f), decltype(Xs)> && ...)
+requires(sizeof... (Xs) > 0) && (std::is_invocable_r_v<bool, decltype(f), decltype(Xs)> && ...) && (is_unityped(Xs...))
 {
 if constexpr (f(head(l)))
 { return prepend<head(l)>(filter(tail(l), f)); }
@@ -40,7 +44,7 @@ else
 // TAKE
 
 template<std::size_t N, auto... Xs>
-requires(N <= (sizeof...(Xs))+1)
+requires(N <= (sizeof...(Xs))+1) && (is_unityped(Xs...))
 constexpr auto take(List<Xs...> l) {
     if constexpr (N <= 0) {
         return List<>();
@@ -52,7 +56,7 @@ constexpr auto take(List<Xs...> l) {
 // DROP
 
 template<std::size_t N, auto... Xs>
-requires(N <= sizeof...(Xs)+1)
+requires(N <= sizeof...(Xs)+1) && (is_unityped(Xs...))
 constexpr auto drop(List<Xs...> l) {
     if constexpr (N <= 0) {
         return l;
@@ -66,7 +70,7 @@ constexpr auto drop(List<>) {return List<>();}
 
 template<auto... Xs>
 constexpr auto takeWhile(auto P, List<Xs...> l)
-requires (std::is_invocable_r<bool, decltype(P), decltype(Xs)>::value && ...) && (sizeof... (Xs) > 0)
+requires (std::is_invocable_r<bool, decltype(P), decltype(Xs)>::value && ...) && (sizeof... (Xs) > 0) && (is_unityped(Xs...))
 {
 if constexpr(P (head(l))){ return prepend<head(l)>(takeWhile(P, tail(l))); }
 else { return List<>(); }
@@ -76,7 +80,7 @@ constexpr auto takeWhile(auto P, List<> l) { return l;}
 
 template<auto... Xs>
 constexpr auto dropWhile(auto P, List<Xs...> l)
-requires (std::is_invocable_r<bool, decltype(P), decltype(Xs)>::value && ...) && (sizeof... (Xs) > 0)
+requires (std::is_invocable_r<bool, decltype(P), decltype(Xs)>::value && ...) && (sizeof... (Xs) > 0) && (is_unityped(Xs...))
 {
 if constexpr(P (head(l))){ return (dropWhile(P, tail(l))); }
 else { return l; }
@@ -84,21 +88,25 @@ else { return l; }
 
 constexpr auto dropWhile(auto P, List<> l) { return l;}
 
-template<List a, List b>
-constexpr auto concat(List<a, b>) {
-    return append(a, b);
+template<auto X, auto... Xs>
+constexpr auto concat(List<X, Xs...> l)
+{
+    return append(head(l), concat(List<Xs...>()));
+}
+constexpr auto concat(List<>) {
+    return List<>();
 }
 
 template<auto... Xs>
 constexpr auto concatMap(auto P,List<Xs...> l)
-requires (std::is_invocable_v<decltype(P), decltype(Xs)> &&...)
+requires (std::is_invocable_v<decltype(P), decltype(Xs)> &&...) && (is_unityped(Xs...))
 {
     return append(P(head(l)), concatMap(P, tail(l)));
 }
 
 template<auto T, auto... Xs>
 constexpr auto scanl (auto P, List<Xs...> l)
-requires (sizeof... (Xs) > 0)
+requires (sizeof... (Xs) > 0) && (is_unityped(Xs...))
 {
     return postpend<foldl<T>(P, l)>(scanl<T>(P, init(l)));
 }
@@ -109,7 +117,7 @@ constexpr auto scanl (auto, List<> l) {
 
 template<auto T, auto... Xs>
 constexpr auto scanr (auto P, List<Xs...> l)
-requires (sizeof... (Xs) > 0)
+requires (sizeof... (Xs) > 0) && (is_unityped(Xs...))
 {
     return prepend<foldr<T>(P,l)>(scanr<T>(P, tail(l)));
 }
@@ -118,7 +126,7 @@ constexpr auto scanr (auto, List<> l) {
     return List<T>();
 }
 template<auto... Xs>
-requires(sizeof... (Xs) > 0)
+requires(sizeof... (Xs) > 0) && (is_unityped(Xs...))
 constexpr auto scanl1 (auto P, List<Xs...> l)
 {
     if constexpr(length(l) == 1) {
@@ -129,7 +137,7 @@ constexpr auto scanl1 (auto P, List<Xs...> l)
 }
 
 template<auto... Xs>
-requires(sizeof... (Xs) > 0)
+requires(sizeof... (Xs) > 0) && (is_unityped(Xs...))
 constexpr auto scanr1 (auto P, List<Xs...> l)
 {
     if constexpr(length(l) == 1) {
