@@ -1,4 +1,9 @@
-## Haskell List Functions for Numbers Checklist
+# Haskell List Functions in C++
+This repository contains the work done in the subject INF329A at UiB.
+The project is a rewritten from of most of the haskell list functions for numbers.
+These functions are written using C++ TMP, and are evaluated at compile time.
+
+## Function Checklist
 
 ### Basic Operations
 - [x] `(++)/get` - List concatenation.
